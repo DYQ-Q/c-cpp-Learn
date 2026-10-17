@@ -2,6 +2,6 @@
 nul
 null
 *.exe
-/output
-/Basic_Grammer/output
-/Pointer_And_Memory/output
+*.o
+output
+
