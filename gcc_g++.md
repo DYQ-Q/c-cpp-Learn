@@ -129,7 +129,12 @@ gcc main.c -I/usr/local/include -L/usr/local/lib -lmylib -o main
 gcc hello.c -o hello
 ./hello
 ```
-
+指定生成的.exe文件的路径,bash需要手动新建目录
+```bash
+mkdir output
+gcc hello.c -o ./output/hello.exe
+./output/hello.exe
+```
 ## 4.2 多文件直接编译
 
 ```bash
