@@ -23,7 +23,7 @@ C_C++_Learn/
     └── Basic.cpp
 ```
 
-每个主题目录内：**一个 `.md` 主笔记 + 若干 `.c` 示例**，示例产物写进该目录的 `output/`。
+每个主题目录内：**一个 `.md` 主笔记 + 若干 `.c` 示例 + 一个 `build.cmd`**（一键把该目录所有示例编到上一级的 `C\output\`，并顺手 `nm`/`-E` 给你看符号与展开结果）。产物目录 `output/` 与 `*.o`、`*.exe` 都已被 `.gitignore` 忽略。
 
 ## 环境（已在本机核实）
 
@@ -65,9 +65,18 @@ g++ -std=c++17 -Wall -Wextra -g basic.cpp -o output\basic.exe
 
 | 批次 | 内容 | 状态 |
 |---|---|---|
-| 1 | ROADMAP、README、工具链笔记重写、基础语法重写、19 主题目录骨架 | ✅ 本次 |
-| 2 | Stage 1：指针 / 类型系统 / 作用域存储期链接 / 预处理宏 | 待开始 |
+| 1 | ROADMAP、README、工具链笔记重写、基础语法重写、19 主题目录骨架 | ✅ 已提交 |
+| 2 | Stage 1：指针 / 类型系统 / 作用域存储期链接 / 预处理宏（正文 + 12 个 `.c` 示例 + 4 个 `build.cmd`） | 正文完成，**示例待本地实测** |
 | 3 | 字符串编码、文件 IO、链表、栈与队列 | 待开始 |
 | 4 | 树、哈希、图、泛型容器 | 待开始 |
 | 5 | 排序查找、内存管理、构建与库、调试工具 | 待开始 |
 | 6 | 并发、系统编程、综合项目 | 待开始 |
+
+第 2 批交付清单（每目录先跑 `build.cmd`，再把笔记里的 `待实测` 改成 `已验证`）：
+
+```bat
+cd C\01_Pointer_And_Memory    && cmd /c build.cmd      :: 指针算术 / 三种二维矩阵 / container_of+侵入式链表
+cd C\02_Type_System          && cmd /c build.cmd      :: 提升与转换实测 / IEEE-754 行为
+cd C\03_Scope_Storage_Linkage && cmd /c build.cmd     :: static 语义 / 三个 TU 的链接实验（含 nm 输出）
+cd C\04_Preprocessor_Macro   && cmd /c build.cmd      :: X-macro / 宏陷阱 / _Generic（含 *.i 展开转储）
+```

@@ -9,22 +9,22 @@
 
 1. **只用命令行**。VS Code 只当编辑器 + gdb 前端，不用 MSVC、不用 IDE 一键运行。理由你要亲眼看到：
    `Hello World` 的 `.exe` 里，你的 `main` 只占极小一段，其余是 CRT 启动代码 + 静态/动态链接的库——这比任何文字都能说明"编译链接"是什么。
-2. **每个示例必须实际编译运行过**。所有产物统一落到主题目录下的 `output/`（已被 `.gitignore` 忽略）。
-   每篇笔记顶部给出标准编译命令，直接复制可跑。
+2. **每个示例必须实际编译运行过**。所有产物统一落到该主题目录**上一级**的 `output/`（例如 `C\01_Pointer_And_Memory\*.c` → `C\output\*.exe`，已被 `.gitignore` 忽略）。
+   每篇笔记顶部给出标准编译命令，每个主题目录另有 `build.cmd` 一键编译该目录全部示例。
 3. **未实测的结论一律标 `待实测`**。我这边的执行环境能调起 `gcc --version`，但**无法完成编译**（`cc1` 那层被沙箱挡住），所以代码是按标准写的，需要你在终端里跑一遍确认。跑通后把 `待实测` 改成 `已验证`。
 
 ---
 
 ## 1. 六阶段主线
 
-### Stage 1 语言地基（第 2 批交付）
+### Stage 1 语言地基（第 2 批：正文 + 示例已交付，**待本地实测**）
 
-| 目录 | 内容 |
-|---|---|
-| `C/01_Pointer_And_Memory` | 指针运算、多级指针、函数指针、对象表示、字节序、柔性数组 |
-| `C/02_Type_System` | 整型提升、Usual Arithmetic Conversions、严格别名、`const` 语义、UB 边界 |
-| `C/03_Scope_Storage_Linkage` | 名字绑定、存储期、链接、声明 vs 定义、`extern "C"` |
-| `C/04_Preprocessor_Macro` | `cpp -dD` 输出、宏陷阱、do-while 技巧、宏元编程、`_Generic`、X-Macro |
+| 目录 | 内容 | 第 2 批示例 |
+|---|---|---|
+| `C/01_Pointer_And_Memory` | 声明阅读法、指针运算与合法边界、数组退化、多级/函数指针与调用约定、`offsetof`/`container_of`、柔性数组、对象表示、三类内存错误与无 ASan 抓法 | `pointer_arithmetic.c` `dynamic_matrix.c` `container_of.c` |
+| `C/02_Type_System` | 整型全景、整数提升、Usual Arithmetic Conversions 完整算法、溢出与除法、IEEE-754 与容差、字符类型家族、`const`/`volatile`、枚举、严格别名、UB 分级与"编译器如何利用 UB"、警告分层 | `promotion_and_overflow.c` `float_compare.c` |
+| `C/03_Scope_Storage_Linkage` | 作用域/存储期/链接三维度、四种名字空间、tentative definition 与 `-fno-common`、`extern` 数组写法、C99 与 GNU `inline` 语义差异、全局状态四种写法、`nm` 符号表、链接错误排查 | `static_counter.c` `linkage_pair_main.c` `linkage_pair_a.c` `linkage_pair_b.c` |
+| `C/04_Preprocessor_Macro` | 翻译八阶段、include 搜索与守卫、`-M/-MD` 依赖生成、`#if`/`__has_include`、跨平台宏判定、括号与 `do{}while(0)`、`#`/`##`/两级展开、变参与日志宏、`_Generic`、X-macro、Windows 宏（`NOMINMAX`/`UNICODE`/A-W 分派） | `xmacro_demo.c` `macro_traps.c` `generic_typing.c` |
 
 **地基顺序为什么这样排**：预处理 → 编译(词法/语法/AST) → 优化 → 汇编 → 链接 → 加载 → 执行，
 这条链上每一段出错的样子都不一样。先学会**看错误发生的位置**，再谈语法。
