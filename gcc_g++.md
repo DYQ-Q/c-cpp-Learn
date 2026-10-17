@@ -61,19 +61,19 @@ gcc main.o -o main         # 链接
 
 ## 3.1 基础选项
 
-| 选项 | 说明 |
-| ---- | ---- |
-| `-o file` | 指定输出文件名 |
-| `-c` | 只编译不链接，生成 .o |
-| `-E` | 只预处理 |
-| `-S` | 只生成汇编代码 |
-| `-Wall` | 开启常见警告 |
-| `-Wextra` | 开启额外警告 |
-| `-Werror` | 把警告当错误 |
-| `-g` | 生成调试信息（GDB 用） |
-| `-std=c11` | 指定 C 标准 |
-| `-std=c++17` | 指定 C++ 标准 |
-| `-v` | 显示编译详细过程 |
+| 选项           | 说明                   |
+| -------------- | ---------------------- |
+| `-o file`    | 指定输出文件名         |
+| `-c`         | 只编译不链接，生成 .o  |
+| `-E`         | 只预处理               |
+| `-S`         | 只生成汇编代码         |
+| `-Wall`      | 开启常见警告           |
+| `-Wextra`    | 开启额外警告           |
+| `-Werror`    | 把警告当错误           |
+| `-g`         | 生成调试信息（GDB 用） |
+| `-std=c11`   | 指定 C 标准            |
+| `-std=c++17` | 指定 C++ 标准          |
+| `-v`         | 显示编译详细过程       |
 
 ```bash
 gcc -Wall -g -o main main.c
@@ -117,8 +117,6 @@ gcc main.c -I/usr/local/include -L/usr/local/lib -lmylib -o main
 -static          ：静态链接
 ```
 
-
-
 ---
 
 # 4. 编译 C 工程
@@ -129,12 +127,15 @@ gcc main.c -I/usr/local/include -L/usr/local/lib -lmylib -o main
 gcc hello.c -o hello
 ./hello
 ```
+
 指定生成的.exe文件的路径,bash需要手动新建目录
+
 ```bash
 mkdir output
 gcc hello.c -o ./output/hello.exe
 ./output/hello.exe
 ```
+
 ## 4.2 多文件直接编译
 
 ```bash
@@ -245,8 +246,6 @@ export LD_LIBRARY_PATH=/path/to/library:$LD_LIBRARY_PATH
 -L 指定路径，-l 指定名称（去掉 lib 前缀和后缀）
 ```
 
-
-
 ---
 
 # 7. Makefile 构建
@@ -302,8 +301,6 @@ make          # 编译
 make clean    # 清理
 ```
 
-
-
 ---
 
 # 8. CMake 构建
@@ -358,8 +355,6 @@ cmake -DCMAKE_CXX_COMPILER=g++ ..
 cmake -G "Ninja" ..
 cmake --build .
 ```
-
-
 
 ---
 
@@ -421,8 +416,6 @@ export LD_LIBRARY_PATH=/path/to/library:$LD_LIBRARY_PATH
 ```
 
 或将库路径写入 `/etc/ld.so.conf.d/` 并执行 `ldconfig`。
-
-
 
 ---
 

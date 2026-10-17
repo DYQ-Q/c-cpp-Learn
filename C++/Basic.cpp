@@ -3,7 +3,7 @@
 
 int main()
 {
-    system("chcp 65001 > null");
+    system("chcp 65001 > nul");
     int arr[5] = {1, 2, 3, 4, 5};
     int *p = arr;    // 等价于 &arr[0]
 

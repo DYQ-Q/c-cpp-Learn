@@ -1,4 +1,6 @@
-# 忽略所有可执行文件
+# 忽略所有可执行文件和程序生成文件
+nul
+null
 *.exe
 /output
 /Basic_Grammer/output
