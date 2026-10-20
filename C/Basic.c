@@ -1,16 +1,16 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
-int main()
-{
-    system("chcp 65001 > nul");
-    int arr[5] = {1, 2, 3, 4, 5};
-    int *p = arr;    // 等价于 &arr[0]
+typedef struct{
+    int a;
+    struct src* p;
+}src;
 
-    printf("%d\n", *p);       // 1
-    printf("%d\n", *(p+2));   // 3
-    printf("中文测试%d\n", p[3]);     // 4
-    //printf("%d\n", arr[3]);   // 4
+src s1;
+
+int main() {
     
     return 0;
 }
+
+
